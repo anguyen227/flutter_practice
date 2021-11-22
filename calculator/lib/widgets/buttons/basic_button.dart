@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../models/button.dart';
 
-class BasicButton extends StatelessWidget implements Button {
-  @override
+class BasicButton extends StatelessWidget {
   final Widget label;
-  @override
   final String type;
-  @override
   final String value;
-  @override
   final Function(String value, String type)? onPressed;
   final int? span;
 
@@ -59,7 +54,7 @@ class BasicButton extends StatelessWidget implements Button {
   }
 }
 
-class ValueButton extends BasicButton implements Button {
+class ValueButton extends BasicButton {
   const ValueButton(
       {Key? key,
       required Widget label,
@@ -73,7 +68,7 @@ class ValueButton extends BasicButton implements Button {
             onPressed: onPressed);
 }
 
-class OperatorButton extends BasicButton implements Button {
+class OperatorButton extends BasicButton {
   const OperatorButton(
       {Key? key,
       required Widget label,
@@ -87,7 +82,7 @@ class OperatorButton extends BasicButton implements Button {
             onPressed: onPressed);
 }
 
-class FunctionButton extends BasicButton implements Button {
+class FunctionButton extends BasicButton {
   const FunctionButton(
       {Key? key,
       required Widget label,
