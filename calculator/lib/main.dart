@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:calculator/theme_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +14,29 @@ import 'screens/calculator.dart';
 import 'screens/currency_exchange.dart';
 
 void main() {
-  runApp(const MyApp());
+  runZonedGuarded(() async {
+    WidgetsFlutterBinding.ensureInitialized();
+
+    // error caught by flutter
+    FlutterError.onError = (FlutterErrorDetails details) {
+      FlutterError.presentError(details);
+      /**
+       * implement custom errorHandler here
+       * myErrorsHandler.onError(details);
+       */
+      // to exit the application
+      // exit(1);
+    };
+    runApp(const MyApp());
+  }, (Object error, StackTrace stack) {
+    // error not caught by flutter
+    /**
+     * implement custom errorHandler here
+     * myErrorsHandler.onError(details);
+     */
+    // to exit the application
+    // exit(1);
+  });
 }
 
 class MyApp extends StatelessWidget {

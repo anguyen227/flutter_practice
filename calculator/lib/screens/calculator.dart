@@ -7,7 +7,7 @@ import '../widgets/controls/control_panel.dart';
 import '../widgets/platform_switch.dart';
 import '../widgets/buttons/basic_button.dart';
 
-const List<List<Map<String, dynamic>>> rows = [
+const List<List<Map<String, dynamic>>> buttons = [
   [
     {'label': Text('AC'), 'type': 'function', 'value': 'clear'},
     {'label': Text('+/-'), 'type': 'function', 'value': 'negative'},
@@ -206,10 +206,9 @@ class _CalculatorState extends State<Calculator> with RestorationMixin {
 
   @override
   Widget build(BuildContext context) {
-    final mediaQuery = MediaQuery.of(context);
     return PlatformSwitch(
       android: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
             flex: 3,
@@ -219,12 +218,9 @@ class _CalculatorState extends State<Calculator> with RestorationMixin {
                 child: Text(_equation.value)),
           ),
           Expanded(
-            flex: 1,
             child: Container(
-              alignment: Alignment.centerRight,
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-              height: max((mediaQuery.size.width / 8).round().toDouble(), 56),
-              width: double.infinity,
+              alignment: Alignment.centerRight,
               child: Text(
                 displayResult,
                 textAlign: TextAlign.right,
@@ -236,7 +232,7 @@ class _CalculatorState extends State<Calculator> with RestorationMixin {
           Expanded(
             flex: 6,
             child: ControlPanel(
-              controls: rows,
+              controls: buttons,
               buttonBuilder: (context, button) {
                 return BasicButton.of(
                   label: button['label'],
